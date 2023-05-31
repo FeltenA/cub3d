@@ -3,6 +3,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <mlx.h>
 
 enum	e_textures {
 	NO,
