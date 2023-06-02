@@ -1,5 +1,10 @@
-SRCS	=	cub3d.c\
-			parse.c
+SRCS	=	src/cub3d.c\
+			src/parse/parse.c\
+			src/parse/parse_utils.c\
+			src/parse/parse_map.c\
+			src/parse/parse_check.c\
+			src/free.c\
+			src/init.c
 
 OBJS	=	${SRCS:.c=.o}
 
