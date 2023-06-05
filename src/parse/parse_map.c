@@ -41,7 +41,7 @@ static int	format_map(t_data *data)
 		{
 			save = ft_realloc(data->map[i], len, data->max_x);
 			if (!save)
-				return (print_error_parse("Map formatting failed"));
+				return (print_error_parse("Map formatting failed\n"));
 			data->map[i] = save;
 			j = len - 1;
 			while (++j < data->max_x)
@@ -101,7 +101,7 @@ static void	get_player_values(t_data *data)
 int	parse_map(t_data *data, int fd, char *line)
 {
 	if (!get_map(data, fd, line) || check_parse_map(data->map, data))
-		return (print_error_parse("Map not valid"));
+		return (print_error_parse("Map not valid\n"));
 	get_player_values(data);
 	return (format_map(data));
 }

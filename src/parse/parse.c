@@ -106,15 +106,15 @@ int	parse_file(t_data *data, char *file)
 	char	*line;
 
 	if (ft_strlen(file) < 4 || ft_strcmp(file + ft_strlen(file) - 4, ".cub"))
-		return (print_error_parse("Map file is not valid"));
+		return (print_error_parse("Map file is not valid\n"));
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (print_error_parse("Cannot open map file"));
+		return (print_error_parse("Cannot open map file\n"));
 	line = parse_info(data, fd);
 	if (!line && !check_parse_info(data))
 	{
 		close(fd);
-		return (print_error_parse("Map info not valid"));
+		return (print_error_parse("Map info not valid\n"));
 	}
 	save = !parse_map(data, fd, line);
 	close(fd);
