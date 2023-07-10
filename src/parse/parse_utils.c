@@ -15,10 +15,10 @@
 
 int	print_error_parse(char *str)
 {
-	if (write(2, "Error\n", 6))
+	if (!write(2, "Error\n", 6))
 		return (0);
 	if (str)
-		if (write(2, str, ft_strlen(str)))
+		if (!write(2, str, ft_strlen(str)))
 			return (0);
 	return (0);
 }
