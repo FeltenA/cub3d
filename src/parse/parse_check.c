@@ -35,7 +35,7 @@ int	check_parse_info(t_data *data)
 	int	i;
 
 	i = -1;
-	while (++i < TEXT_NBR)
+	while (++i < TEX_NBR)
 		if (!data->f_imgs[i].img.img || !data->f_imgs[i].img.addr)
 			return (0);
 	if (data->c_color == -1 || data->f_color == -1)

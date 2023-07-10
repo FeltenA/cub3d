@@ -18,16 +18,16 @@ void	free_data(t_data *data)
 	int	i;
 
 	i = -1;
-	while (++i < TEXT_NBR)
+	while (++i < TEX_NBR)
 		if (data->f_imgs[i].img.img)
 			mlx_destroy_image(data->mlx, data->f_imgs[i].img.img);
 	if (data->map)
 		ft_array_free((void **)data->map,
 			ft_array_len((void **)data->map), &free);
-	if (data->img)
+	if (data->texture_pixels)
 	{
-		mlx_destroy_image(data->mlx, data->img->img);
-		free(data->img);
+		ft_array_free(data->texture_pixels,
+			ft_array_len(data->texture_pixels), &free);
 	}
 	if (data->mlx_win)
 		mlx_destroy_window(data->mlx, data->mlx_win);

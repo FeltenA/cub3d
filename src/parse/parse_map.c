@@ -82,16 +82,7 @@ static void	get_player_values(t_data *data)
 		{
 			if (ft_isinlist(data->map[i][j], "NSEW"))
 			{
-				data->player.pos.x = j;
-				data->player.pos.y = i;
-				if (data->map[i][j] == 'N')
-					data->player.angle = 1.5707963268;
-				else if (data->map[i][j] == 'S')
-					data->player.angle = 4.7123889804;
-				else if (data->map[i][j] == 'E')
-					data->player.angle = 0;
-				else
-					data->player.angle = 3.1415926536;
+				init_player(&data->player, i, j, data->map[i][j]);
 				return ;
 			}
 		}

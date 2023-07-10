@@ -65,13 +65,13 @@ static void	choose_text(t_data *data, char **info)
 	if (!ft_strcmp(info[0], "F") || !ft_strcmp(info[0], "C"))
 		parse_color(data, info);
 	else if (!ft_strcmp(info[0], "NO"))
-		parse_texture(data, NO, info);
+		parse_texture(data, NORTH, info);
 	else if (!ft_strcmp(info[0], "SO"))
-		parse_texture(data, SO, info);
+		parse_texture(data, SOUTH, info);
 	else if (!ft_strcmp(info[0], "WE"))
-		parse_texture(data, WE, info);
+		parse_texture(data, WEST, info);
 	else if (!ft_strcmp(info[0], "EA"))
-		parse_texture(data, EA, info);
+		parse_texture(data, EAST, info);
 }
 
 static char	*parse_info(t_data *data, int fd)

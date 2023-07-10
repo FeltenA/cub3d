@@ -3,6 +3,9 @@ SRCS	=	src/cub3d.c\
 			src/parse/parse_utils.c\
 			src/parse/parse_map.c\
 			src/parse/parse_check.c\
+			src/display/raycasting.c\
+			src/display/texture.c\
+			src/display/display.c\
 			src/free.c\
 			src/init.c
 
