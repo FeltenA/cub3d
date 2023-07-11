@@ -12,9 +12,32 @@
 
 #include "cub3d.h"
 
+void	init_ray(t_ray *ray)
+{
+	ray->camera_x = 0; //coordonnée x sur le plan de la caméra
+	ray->dir_x = 0; //direction du rayon
+	ray->dir_y = 0;
+	ray->map_x = 0; // carré actuel de la carte dans laquelle se trouve le rayon
+	ray->map_y = 0;
+	ray->sidedist_x = 0; // distance que le rayon doit parcourir depuis sa position de départ jusqu'au premier côté x
+	ray->sidedist_y = 0;
+	ray->deltadist_x = 0; // distance que le rayon doit parcourir pour passer du côté x au côté x suivant
+	ray->deltadist_y = 0;
+	ray->perp_walldist = 0; //distance perpendiculaire par rapport au mur
+	ray->step_x = 0; //si on va dans la direction x
+	ray->step_y = 0;
+	ray->hit = 0; //si un mur a été touché
+	ray->line_height = 0; //hauteur de la ligne a dessiné à l'écran
+	ray->draw_start = 0; //pixel le plus bas
+	ray->draw_end = 0; //puxel le plus haut
+	ray->wall_x = 0; //valeur exacte où le mur a été touché
+	ray->side = 0; //quel coté du mur a été touché
+}
+
 static int	create_texture_pixels(t_data *data)
 {
 	int	i;
+	int	j;
 
 	data->texture_pixels = malloc(sizeof(int *) * (data->win_height + 1));
 	if (!data->texture_pixels)
@@ -26,6 +49,9 @@ static int	create_texture_pixels(t_data *data)
 		data->texture_pixels[i] = malloc(sizeof(int) * (data->win_width + 1));
 		if (!data->texture_pixels[i])
 			return (0);
+		j = -1;
+		while (++j < data->win_width)
+			data->texture_pixels[i][j] = 0;
 		i++;
 	}
 	return (1);

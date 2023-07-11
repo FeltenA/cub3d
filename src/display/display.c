@@ -12,6 +12,9 @@
 
 #include "cub3d.h"
 
+int		raycasting(t_player *player, t_data *data);
+void	init_ray(t_ray *ray);
+
 typedef struct s_rect
 {
 	int	x;
@@ -20,7 +23,7 @@ typedef struct s_rect
 	int	y_width;
 }	t_rect;
 
-void	draw_rectangle(t_data *data, t_img *img, t_rect *rect, char color)
+void	draw_rectangle(t_data *data, t_img *img, t_rect *rect, int color)
 {
 	int	x;
 	int	y;
@@ -103,7 +106,6 @@ static void	display_frame(t_data *data)
 
 int	render(t_data *data)
 {
-	create_texture_pixels(data);
 	init_ray(&data->ray);
 	raycasting(&data->player, data);
 	display_frame(data);

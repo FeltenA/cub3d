@@ -13,6 +13,12 @@
 #include "libft.h"
 #include "cub3d.h"
 
+static void	nothing(void *data)
+{
+	(void)data;
+	return ;
+}
+
 void	free_data(t_data *data)
 {
 	int	i;
@@ -26,8 +32,8 @@ void	free_data(t_data *data)
 			ft_array_len((void **)data->map), &free);
 	if (data->texture_pixels)
 	{
-		ft_array_free(data->texture_pixels,
-			ft_array_len(data->texture_pixels), &free);
+		ft_array_free((void **)data->texture_pixels,
+			ft_array_len((void **)data->texture_pixels), &nothing);
 	}
 	if (data->mlx_win)
 		mlx_destroy_window(data->mlx, data->mlx_win);
