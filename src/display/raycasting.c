@@ -13,6 +13,8 @@
 #include "cub3d.h"
 #include <math.h>
 
+void	update_wall_pixels(t_data *data, t_tex *tex, t_ray *ray, int x);
+
 static void	set_ray(int x, t_ray *ray, t_player *player)
 {
 	ray->camera_x = 2 * x / (double)RES_WIDTH - 1;

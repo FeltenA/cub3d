@@ -44,7 +44,7 @@ void	update_wall_pixels(t_data *data, t_tex *tex, t_ray *ray, int x)
 	tex->x = (int)(ray->wall_x * tex->size[tex->index]);
 	if ((ray->side == 0 && ray->dir_x < 0)
 		|| (ray->side == 1 && ray->dir_y > 0))
-		tex->x = tex->size - tex->x - 1;
+		tex->x = tex->size[tex->index] - tex->x - 1;
 	tex->step = 1.0 * tex->size[tex->index] / ray->line_height;
 	tex->pos = (ray->draw_start - data->win_height / 2
 			+ ray->line_height / 2) * tex->step;
