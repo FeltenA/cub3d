@@ -41,22 +41,19 @@ void	update_wall_pixels(t_data *data, t_tex *tex, t_ray *ray, int x)
 	int			color;
 
 	get_wall_index(data, ray);
-	tex->x = (int)(ray->wall_x * tex->size[tex->index]);
+	tex->x = (int)(ray->wall_x * (double)tex->size[tex->index]);
 	if ((ray->side == 0 && ray->dir_x < 0)
 		|| (ray->side == 1 && ray->dir_y > 0))
 		tex->x = tex->size[tex->index] - tex->x - 1;
 	tex->step = 1.0 * tex->size[tex->index] / ray->line_height;
 	tex->pos = (ray->draw_start - data->win_height / 2
 			+ ray->line_height / 2) * tex->step;
-	y = ray-> draw_start;
+	y = ray->draw_start;
 	while (y < ray->draw_end)
 	{
 		tex->y = (int)tex->pos & (tex->size[tex->index] - 1);
 		tex->pos += tex->step;
-		color = data->f_imgs[tex->index].img.addr[tex->size[tex->index]
-			* tex->y + tex->x];
-		if (tex->index == NORTH || tex->index == EAST)
-			color = (color >> 1) & 8355711;
+		color = get_pixel(&data->f_imgs[tex->index], tex->x, tex->y);
 		if (color > 0)
 			data->texture_pixels[y][x] = color;
 		y++;

@@ -16,8 +16,8 @@ int	check_parse_map(char **map, t_data *data)
 		while (map[i][++j])
 		{
 			if (ft_isinlist(map[i][j], "0NSEW")
-				&& (i == 0 || i == data->max_y || j == 0
-				|| j == (int)ft_strlen(map[i])
+				&& (i == 0 || i == data->max_y - 1 || j == 0
+				|| j == (int)ft_strlen(map[i]) - 1
 				|| map[i - 1][j] == ' ' || map[i + 1][j] == ' '
 				|| map[i][j - 1] == ' ' || map[i][j + 1] == ' '))
 				return (0);

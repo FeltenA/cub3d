@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "libft.h"
 #include <math.h>
 
 void	update_wall_pixels(t_data *data, t_tex *tex, t_ray *ray, int x);
@@ -24,6 +25,7 @@ static void	set_ray(int x, t_ray *ray, t_player *player)
 	ray->map_y = (int)player->pos_y;
 	ray->deltadist_x = fabs(1 / ray->dir_x);
 	ray->deltadist_y = fabs(1 / ray->dir_y);
+	ray->hit = 0;
 }
 
 static void	set_dda(t_ray *ray, t_player *player)
@@ -69,9 +71,9 @@ static void	dda(t_data *data, t_ray *ray)
 		if (ray->map_y < 0.25
 			|| ray->map_x < 0.25
 			|| ray->map_y > data->max_y - 0.25
-			|| ray->map_x > data->max_x - 1.25)
+			|| ray->map_x > data->max_x - 0.25)
 			break ;
-		else if (data->map[ray->map_y][ray->map_x] > '0')
+		else if (!ft_isinlist(data->map[ray->map_y][ray->map_x], "0NSEW"))
 			ray->hit = 1;
 	}
 }

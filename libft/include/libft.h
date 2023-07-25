@@ -74,5 +74,6 @@ void	ft_array_free(void **array, int len, void free_funct(void *));
 int		ft_array_len(void **array);
 void	ft_free_ptr(void *ptr);
 int		ft_isinlist(char c, const char *list);
+void	ft_array_exec(void **array, int len, void funct(void *));
 
 #endif

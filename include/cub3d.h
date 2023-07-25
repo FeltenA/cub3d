@@ -26,8 +26,8 @@ enum	e_textures {
 enum	e_values {
 	TEX_NBR = 4,
 	TEX_SIZE = 64,
-	RES_WIDTH = 800,
-	RES_HEIGHT = 600
+	RES_WIDTH = 1200,
+	RES_HEIGHT = 1000
 };
 
 typedef struct s_player
@@ -90,7 +90,7 @@ typedef struct s_file_img
 {
 	t_img	img;
 	int		width;
-	int		heigth;
+	int		height;
 }	t_file_img;
 
 typedef struct s_data
@@ -111,6 +111,22 @@ typedef struct s_data
 	t_file_img	f_imgs[TEX_NBR];
 }	t_data;
 
+typedef struct s_rect
+{
+	int	x;
+	int	y;
+	int	x_width;
+	int	y_width;
+}	t_rect;
+
+typedef struct s_mmap
+{
+	t_img	*img;
+	t_rect	map;
+	t_rect	player;
+	t_rect	wall;
+}	t_mmap;
+
 void	free_data(t_data *data);
 int		init_data(t_data *data);
 int		is_empty_line(char *line);
@@ -122,5 +138,11 @@ int		check_parse_info(t_data *data);
 int		check_parse_map(char **map, t_data *data);
 int		parse_file(t_data *data, char *file);
 void	init_player(t_player *player, int i, int j, char chr);
+
+int		render(t_data *data);
+int		close_window(t_data *data);
+
+void    draw_pixel(t_img *img, int x, int y, int color);
+int		get_pixel(t_file_img *fimg, int x, int y);
 
 #endif

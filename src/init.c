@@ -84,8 +84,7 @@ static void	init_tex(t_tex *tex)
 	i = -1;
 	while (++i < TEX_NBR)
 	{
-		if (i < EAST)
-			tex->size[i] = TEX_SIZE;
+		tex->size[i] = TEX_SIZE;
 	}
 }
 
@@ -113,28 +112,40 @@ int	init_data(t_data *data)
 	return (init_mlx(data));
 }
 
-void	init_player(t_player *player, int i, int j, char chr)
+void	init_player(t_player *player, int x, int y, char chr)
 {
 	player->chr = chr;
-	player->plane_x = 0;
-	player->plane_y = 0.66;
-	player->pos_x = i;
-	player->pos_y = j;
+	player->pos_x = x;
+	player->pos_y = y;
 	if (chr == 'N' || chr == 'S')
 	{
 		player->dir_x = 0;
-		if (chr == 'N')
+		player->plane_y = 0;
+		if (chr == 'S')
+		{
 			player->dir_y = 1;
+			player->plane_x = 0.66;
+		}
 		else
+		{
 			player->dir_y = -1;
+			player->plane_x = -0.66;
+		}
 	}
 	else
 	{
 		player->dir_y = 0;
+		player->plane_x = 0;
 		if (chr == 'E')
+		{
 			player->dir_x = 1;
+			player->plane_y = 0.66;
+		}
 		else
+		{
 			player->dir_x = -1;
+			player->plane_y = -0.66;
+		}
 	}
 	player->has_moved = 0;
 	player->move_x = 0;

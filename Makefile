@@ -6,6 +6,8 @@ SRCS	=	src/cub3d.c\
 			src/display/raycasting.c\
 			src/display/texture.c\
 			src/display/display.c\
+			src/display/draw.c\
+			src/display/minimap.c\
 			src/free.c\
 			src/init.c
 

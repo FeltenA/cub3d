@@ -2,7 +2,7 @@
 #include "cub3d.h"
 #include "libft.h"
 #include <math.h>
-
+#include <stdio.h>
 static int	fill_map(t_data *data, int fd, char **line)
 {
 	int		i;
@@ -39,7 +39,7 @@ static int	format_map(t_data *data)
 		len = ft_strlen(data->map[i]);
 		if (len < data->max_x)
 		{
-			save = ft_realloc(data->map[i], len, data->max_x);
+			save = ft_realloc(data->map[i], len, data->max_x + 1);
 			if (!save)
 				return (print_error_parse("Map formatting failed\n"));
 			data->map[i] = save;
@@ -82,7 +82,7 @@ static void	get_player_values(t_data *data)
 		{
 			if (ft_isinlist(data->map[i][j], "NSEW"))
 			{
-				init_player(&data->player, i, j, data->map[i][j]);
+				init_player(&data->player, j, i, data->map[i][j]);
 				return ;
 			}
 		}
@@ -91,7 +91,7 @@ static void	get_player_values(t_data *data)
 
 int	parse_map(t_data *data, int fd, char *line)
 {
-	if (!get_map(data, fd, line) || check_parse_map(data->map, data))
+	if (!get_map(data, fd, line) || !check_parse_map(data->map, data))
 		return (print_error_parse("Map not valid\n"));
 	get_player_values(data);
 	return (format_map(data));

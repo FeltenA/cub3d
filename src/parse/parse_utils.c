@@ -65,6 +65,8 @@ int	is_map_line(char *line)
 {
 	int	i;
 
+	if (is_empty_line(line))
+		return (0);
 	i = -1;
 	while (line[++i])
 		if (!ft_isinlist(line[i], " 01NSEW"))

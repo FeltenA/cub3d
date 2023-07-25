@@ -24,6 +24,8 @@ int	main(int argc, char *argv[])
 		free_data(&data);
 		return (1);
 	}
-	free_data(&data);
-	return (1);
+	render(&data);
+	mlx_hook(data.mlx_win, 17, 0, close_window, &data);
+	mlx_loop(data.mlx);
+	return (0);
 }

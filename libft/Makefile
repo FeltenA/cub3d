@@ -52,7 +52,8 @@ SRCSADD	=	src_added/get_next_line_bonus.c\
 			src_added/ft_array_free.c\
 			src_added/ft_array_len.c\
 			src_added/ft_isinlist.c\
-			src_added/ft_free_ptr.c
+			src_added/ft_free_ptr.c\
+			src_added/ft_array_exec.c
 
 OBJS	= ${SRCS:.c=.o}
 

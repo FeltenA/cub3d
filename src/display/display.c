@@ -14,67 +14,18 @@
 
 int		raycasting(t_player *player, t_data *data);
 void	init_ray(t_ray *ray);
-
-typedef struct s_rect
-{
-	int	x;
-	int	y;
-	int	x_width;
-	int	y_width;
-}	t_rect;
-
-void	draw_rectangle(t_data *data, t_img *img, t_rect *rect, int color)
-{
-	int	x;
-	int	y;
-
-	y = rect->y;
-	while (y < rect->y_width)
-	{
-		x = rect->x;
-		while (x < rect->x_width)
-		{
-			img->addr[y * data->win_width + x] = color;
-			x++;
-		}
-		y++;
-	}
-}
-
-void	draw_minimap_info(t_data *data, t_img *img, t_rect *map)
-{
-	t_rect	rect;
-
-	rect.y = map->y + map->y_width / 2;
-	rect.x = map->x + map->x_width / 2;
-	rect.x_width = map->x_width / 10;
-	rect.y_width = map->y_width / 10;
-	draw_rectangle(data, img, &rect, 0xff0000);
-}
-
-void	draw_minimap(t_data *data, t_img *img)
-{
-	t_rect	rect;
-
-	rect.y = data->win_height - data->win_height / 10;
-	rect.x = data->win_width - data->win_width / 10;
-	rect.y_width = data->win_height - rect.y;
-	rect.x_width = data->win_width - rect.x;
-	draw_rectangle(data, img, &rect, 0);
-	draw_minimap_info(data, img, &rect);
-}
+void	draw_minimap(t_data *data, t_img *img);
 
 static void	set_frame_pixel(t_data *data, t_img *image, int x, int y)
 {
-	int	pixel;
-
-	pixel = x + y * (image->line_len / 4);
+	if (x > data->win_width || y > data->win_height)
+		return ;
 	if (data->texture_pixels[y][x] > 0)
-		image->addr[pixel] = data->texture_pixels[y][x];
+		draw_pixel(image, x, y, data->texture_pixels[y][x]);
 	else if (y < data->win_height / 2)
-		image->addr[pixel] = data->c_color;
+		draw_pixel(image, x, y, data->c_color);
 	else if (y < data->win_height - 1)
-		image->addr[pixel] = data->f_color;
+		draw_pixel(image, x, y, data->f_color);
 }
 
 static void	display_frame(t_data *data)

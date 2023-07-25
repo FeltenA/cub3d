@@ -22,7 +22,7 @@ static void	parse_texture(t_data *data, int index, char **info)
 
 	f_img = &data->f_imgs[index];
 	f_img->img.img = mlx_xpm_file_to_image(data->mlx, info[1],
-			&f_img->width, &f_img->heigth);
+			&f_img->width, &f_img->height);
 	if (!f_img->img.img)
 		return ;
 	f_img->img.addr = mlx_get_data_addr(f_img->img.img, &f_img->img.bpp,
@@ -52,9 +52,9 @@ static void	parse_color(t_data *data, char **info)
 	rgb[2] = ft_atoi(colors[0]);
 	rgb[3] = 0;
 	if (!ft_strcmp(info[0], "F"))
-		data->f_color = *(int *)rgb;
+		data->f_color = *((int *)rgb);
 	else if (!ft_strcmp(info[0], "C"))
-		data->c_color = *(int *)rgb;
+		data->c_color = *((int *)rgb);
 	ft_array_free((void **)colors, len, &free);
 }
 
@@ -116,7 +116,7 @@ int	parse_file(t_data *data, char *file)
 		close(fd);
 		return (print_error_parse("Map info not valid\n"));
 	}
-	save = !parse_map(data, fd, line);
+	save = parse_map(data, fd, line);
 	close(fd);
 	return (save);
 }
