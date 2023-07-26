@@ -55,13 +55,33 @@ static void	display_frame(t_data *data)
 	mlx_destroy_image(data->mlx, img.img);
 }
 
+static void	reset_pixels(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < data->win_height)
+	{
+		j = -1;
+		while (++j < data->win_width)
+			data->texture_pixels[i][j] = 0;
+	}
+}
+
+void	display(t_data *data)
+{
+	reset_pixels(data);
+	init_ray(&data->ray);
+	raycasting(&data->player, data);
+	display_frame(data);
+}
+
 int	render(t_data *data)
 {
 	data->player.has_moved += move(data);
 	if (data->player.has_moved == 0)
 		return (0);
-	init_ray(&data->ray);
-	raycasting(&data->player, data);
-	display_frame(data);
+	display(data);
 	return (0);
 }

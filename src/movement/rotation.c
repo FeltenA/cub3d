@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <math.h>
 
 static int	player_rotation(t_data *data, double rotspeed)
 {

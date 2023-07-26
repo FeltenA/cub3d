@@ -18,6 +18,8 @@ static int	check_position(t_data *data, double x, double y)
 		return (0);
 	if (y < 0.25 || y >= data->max_y -0.25)
 		return (0);
+	if (data->map[(int)y][(int)x] == '1')
+		return (0);
 	return (1);
 }
 
