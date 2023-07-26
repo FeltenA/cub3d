@@ -14,24 +14,24 @@
 
 void	init_ray(t_ray *ray)
 {
-	ray->camera_x = 0; //coordonnée x sur le plan de la caméra
-	ray->dir_x = 0; //direction du rayon
+	ray->camera_x = 0;
+	ray->dir_x = 0;
 	ray->dir_y = 0;
-	ray->map_x = 0; // carré actuel de la carte dans laquelle se trouve le rayon
+	ray->map_x = 0;
 	ray->map_y = 0;
-	ray->sidedist_x = 0; // distance que le rayon doit parcourir depuis sa position de départ jusqu'au premier côté x
+	ray->sidedist_x = 0;
 	ray->sidedist_y = 0;
-	ray->deltadist_x = 0; // distance que le rayon doit parcourir pour passer du côté x au côté x suivant
+	ray->deltadist_x = 0;
 	ray->deltadist_y = 0;
-	ray->perp_walldist = 0; //distance perpendiculaire par rapport au mur
-	ray->step_x = 0; //si on va dans la direction x
+	ray->perp_walldist = 0;
+	ray->step_x = 0;
 	ray->step_y = 0;
-	ray->hit = 0; //si un mur a été touché
-	ray->line_height = 0; //hauteur de la ligne a dessiné à l'écran
-	ray->draw_start = 0; //pixel le plus bas
-	ray->draw_end = 0; //puxel le plus haut
-	ray->wall_x = 0; //valeur exacte où le mur a été touché
-	ray->side = 0; //quel coté du mur a été touché
+	ray->hit = 0;
+	ray->line_height = 0;
+	ray->draw_start = 0;
+	ray->draw_end = 0;
+	ray->wall_x = 0;
+	ray->side = 0;
 }
 
 static int	create_texture_pixels(t_data *data)
@@ -117,36 +117,7 @@ void	init_player(t_player *player, int x, int y, char chr)
 	player->chr = chr;
 	player->pos_x = x;
 	player->pos_y = y;
-	if (chr == 'N' || chr == 'S')
-	{
-		player->dir_x = 0;
-		player->plane_y = 0;
-		if (chr == 'S')
-		{
-			player->dir_y = 1;
-			player->plane_x = 0.66;
-		}
-		else
-		{
-			player->dir_y = -1;
-			player->plane_x = -0.66;
-		}
-	}
-	else
-	{
-		player->dir_y = 0;
-		player->plane_x = 0;
-		if (chr == 'E')
-		{
-			player->dir_x = 1;
-			player->plane_y = 0.66;
-		}
-		else
-		{
-			player->dir_x = -1;
-			player->plane_y = -0.66;
-		}
-	}
+	set_player_direction(player);
 	player->has_moved = 0;
 	player->move_x = 0;
 	player->move_y = 0;

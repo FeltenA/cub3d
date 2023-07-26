@@ -2,7 +2,7 @@
 #include "cub3d.h"
 #include "libft.h"
 #include <math.h>
-#include <stdio.h>
+
 static int	fill_map(t_data *data, int fd, char **line)
 {
 	int		i;

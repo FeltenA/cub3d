@@ -57,6 +57,9 @@ static void	display_frame(t_data *data)
 
 int	render(t_data *data)
 {
+	data->player.has_moved += move(data);
+	if (data->player.has_moved == 0)
+		return (0);
 	init_ray(&data->ray);
 	raycasting(&data->player, data);
 	display_frame(data);

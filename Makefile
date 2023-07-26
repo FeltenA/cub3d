@@ -8,6 +8,11 @@ SRCS	=	src/cub3d.c\
 			src/display/display.c\
 			src/display/draw.c\
 			src/display/minimap.c\
+			src/movement/direction.c\
+			src/movement/key.c\
+			src/movement/move.c\
+			src/movement/position.c\
+			src/movement/rotation.c\
 			src/free.c\
 			src/init.c
 

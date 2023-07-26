@@ -5,6 +5,9 @@
 # include <unistd.h>
 # include <mlx.h>
 
+# define MOVESPEED 0.0125
+# define ROTSPEED 0.015
+
 enum	e_keycodes {
 	WKEY,
 	AKEY,
@@ -141,8 +144,12 @@ void	init_player(t_player *player, int i, int j, char chr);
 
 int		render(t_data *data);
 int		close_window(t_data *data);
+void	set_player_direction(t_player *player);
+int		key_press(int key, t_data *data);
+int		key_release(int key, t_data *data);
 
 void    draw_pixel(t_img *img, int x, int y, int color);
 int		get_pixel(t_file_img *fimg, int x, int y);
+void	draw_rectangle(t_data *data, t_img *img, t_rect *rect, int color);
 
 #endif
